@@ -78,8 +78,11 @@ async Task MessageReceivedAsync(SocketMessage message)
         var sb = new StringBuilder();
 
         sb.AppendLine("High Score");
+        sb.AppendLine("--------------------------------------------------");
 
-        foreach (var item in highScores)
+        var sorterHighScores = from item in highScores orderby item.Value descending select item;
+
+        foreach (var item in sorterHighScores)
         {
             sb.AppendLine($"{item.Key, -25} - {item.Value, 7}");
         }
