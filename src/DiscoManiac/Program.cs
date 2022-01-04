@@ -29,12 +29,12 @@ await Task.Delay(Timeout.Infinite);
 {
     if (string.IsNullOrWhiteSpace(message)) 
     {
-        return (false, "", null);
+        return (false, "", new string[0]);
     }
 
     if (message.Length < 2 || message[0] != commandPrefix)
     {
-        return (false, "", null);
+        return (false, "", new string[0]);
     }
 
     var messageWithoutPrefix = message.Substring(1);
@@ -81,10 +81,10 @@ async Task MessageReceivedAsync(SocketMessage message)
 
         foreach (var item in highScores)
         {
-            sb.AppendLine($"{item.Key} - {item.Value}");
+            sb.AppendLine($"{item.Key, -25} - {item.Value, 7}");
         }
 
-        message.Channel.SendMessageAsync(sb.ToString());
+        await message.Channel.SendMessageAsync(sb.ToString());
     }
     else if (command == "save-scores")
     {
@@ -104,7 +104,6 @@ async Task MessageReceivedAsync(SocketMessage message)
 
 Task LogAsync(LogMessage log)
 {
-    Console.WriteLine("Nu loggar jag");
     Console.WriteLine(log.ToString());
     return Task.CompletedTask;
 }
@@ -112,6 +111,5 @@ Task LogAsync(LogMessage log)
 Task ReadyAsync()
 {
     Console.WriteLine($"{client.CurrentUser} is connected!");
-
     return Task.CompletedTask;
 }
