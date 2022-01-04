@@ -1,7 +1,4 @@
-﻿using System.Runtime.Serialization.Json;
-using System.Security.AccessControl;
-using System.Text;
-using System.ComponentModel.Design;
+﻿using System.Text;
 using Discord;
 using Discord.WebSocket;
 using System.Text.Json;
